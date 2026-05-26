@@ -1,0 +1,846 @@
+/* CSS para la Vista Previa y Exportación del Presupuesto Formal */
+
+/* --- 1. CONFIGURACIÓN DE PÁGINA TRIDIMENSIONAL (SCREEN) --- */
+.preview-section-wrapper {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1.5px solid var(--color-border);
+}
+
+/* Barra de Acciones Sticky */
+.preview-actions-bar {
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    background-color: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeInShort 0.3s ease-out;
+}
+
+.actions-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-bar-title {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.actions-buttons-group {
+    display: flex;
+    gap: 15px;
+}
+
+.document-pages-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    background-color: #080808;
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1.5px solid var(--color-border);
+}
+
+/* Estructura Base de una Página A4 Apaisada (Pantalla) */
+.presupuesto-page {
+    width: 297mm;
+    height: 210mm;
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 2.2cm;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    font-style: normal !important;
+}
+
+.presupuesto-page * {
+    color: #000000;
+    font-style: normal !important;
+}
+
+/* --- 2. MAQUETACIÓN DE PÁGINAS INDIVIDUALES --- */
+
+/* PÁGINA 1: PORTADA */
+.page-portada {
+    background-color: var(--color-primary); /* Teal oscuro jA (#27696D) */
+    position: relative;
+    overflow: hidden;
+}
+
+.page-portada * {
+    color: #FFFFFF !important;
+}
+
+.portada-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.portada-left-decor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background-color: var(--color-accent); /* Acento naranju */
+}
+
+.portada-main-text {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 20px;
+}
+
+.portada-tagline {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    color: var(--color-accent) !important;
+    display: block;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.portada-client-title {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1.05;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.5rem 0;
+    word-break: break-word;
+}
+
+.portada-date {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+}
+
+.portada-footer-logo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.print-logo-white {
+    height: 40px;
+    width: auto;
+}
+
+.print-logo-fallback {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.05em;
+}
+
+/* ELEMENTOS COMUNES DE PÁGINAS INTERNAS */
+.page-inner-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header-decor {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 12px;
+}
+
+.page-caption-number {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary) !important;
+}
+
+.page-caption-title {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #666666 !important;
+    font-weight: 600;
+}
+
+.page-title-heading {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: #000000 !important;
+}
+
+/* PÁGINA 2: NARRATIVA METODOLÓGICA */
+.page-body-text-block {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #333333 !important;
+    text-align: justify;
+    max-width: 90%;
+    margin-top: 1rem;
+}
+
+.page-body-text-block p {
+    margin-bottom: 1.25rem;
+    color: #333333 !important;
+}
+
+/* PÁGINA 3: SERVICIOS INCLUIDOS */
+.services-list-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 2.5rem;
+    flex-grow: 1;
+}
+
+.service-group {
+    margin-bottom: 1rem;
+}
+
+.service-group-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary) !important;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(39, 105, 109, 0.15);
+    padding-bottom: 4px;
+}
+
+.service-group-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.service-item-detail {
+    font-family: var(--font-ui);
+    font-size: 0.825rem;
+    line-height: 1.4;
+    color: #555555 !important;
+}
+
+.service-item-detail strong {
+    color: #111111 !important;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+}
+
+/* Caja de Notas de Valor */
+.value-notes-box {
+    margin-top: auto;
+    background-color: rgba(39, 105, 109, 0.04);
+    border-left: 3px solid var(--color-primary);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.value-notes-title {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary) !important;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.value-notes-content {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #444444 !important;
+}
+
+/* PÁGINA 4: PLANIFICACIÓN (TIMELINE) */
+.timeline-visual-container {
+    flex-grow: 1;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.timeline-grid {
+    display: grid;
+    /* Grid dinámico: columns = 1 (para labels) + M (meses) */
+    align-items: center;
+    row-gap: 1.25rem;
+}
+
+.timeline-headers-row {
+    display: contents;
+}
+
+.timeline-header-label {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #888888 !important;
+}
+
+.timeline-month-column-header {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 8px;
+    color: #444444 !important;
+}
+
+.timeline-row {
+    display: contents;
+}
+
+.timeline-stage-label {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #111111 !important;
+}
+
+.timeline-bar-wrapper {
+    /* Ocupará múltiples columnas del grid de meses */
+    height: 24px;
+    background-color: rgba(39, 105, 109, 0.1);
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid rgba(39, 105, 109, 0.2);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    overflow: hidden;
+}
+
+.timeline-bar-wrapper.diseñar {
+    background-color: rgba(246, 192, 47, 0.1);
+    border-color: rgba(246, 192, 47, 0.25);
+}
+
+.timeline-bar-wrapper.desarrollar {
+    background-color: rgba(39, 105, 109, 0.15);
+    border-color: rgba(39, 105, 109, 0.3);
+}
+
+.timeline-bar-wrapper.mantener {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.timeline-bar-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: var(--color-primary); /* Teal */
+    border-radius: 3px 0 0 3px;
+    opacity: 0.85;
+}
+
+.timeline-bar-wrapper.diseñar .timeline-bar-fill {
+    background-color: var(--color-accent); /* Naranju */
+}
+
+.timeline-bar-wrapper.desarrollar .timeline-bar-fill {
+    background-color: var(--color-primary);
+}
+
+.timeline-bar-wrapper.mantener .timeline-bar-fill {
+    background-color: #333333;
+}
+
+.timeline-bar-text {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timeline-bar-wrapper.diseñar .timeline-bar-text {
+    color: #4b3600 !important;
+}
+.timeline-bar-wrapper.idear .timeline-bar-text,
+.timeline-bar-wrapper.desarrollar .timeline-bar-text {
+    color: #ffffff !important;
+}
+.timeline-bar-wrapper.mantener .timeline-bar-text {
+    color: #ffffff !important;
+}
+
+.timeline-summary-footer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 15px;
+}
+
+.timeline-footer-label {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #777777 !important;
+}
+
+.timeline-footer-stages {
+    display: flex;
+    gap: 10px;
+}
+
+.timeline-badge-stage {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #555555 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.timeline-badge-stage.idear {
+    background-color: rgba(39, 105, 109, 0.1);
+    color: var(--color-primary) !important;
+    border-color: rgba(39, 105, 109, 0.2);
+}
+
+.timeline-badge-stage.diseñar {
+    background-color: rgba(246, 192, 47, 0.15);
+    color: #b3860d !important;
+    border-color: rgba(246, 192, 47, 0.3);
+}
+
+.timeline-badge-stage.desarrollar {
+    background-color: rgba(39, 105, 109, 0.15);
+    color: var(--color-primary) !important;
+    border-color: rgba(39, 105, 109, 0.3);
+}
+
+/* PÁGINA 5: HOJA FORMAL */
+.page-formal-sheet {
+    padding: 1.8cm 2cm;
+}
+
+.formal-sheet-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.formal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1.5px solid #000000;
+    padding-bottom: 15px;
+    margin-bottom: 1rem;
+}
+
+.formal-firm-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: -0.03em;
+}
+
+.formal-firm-sub {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666666 !important;
+    display: block;
+}
+
+.formal-doc-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: right;
+    letter-spacing: 0.05em;
+}
+
+.formal-budget-number {
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: right;
+    color: var(--color-primary) !important;
+    margin: 3px 0;
+}
+
+.formal-date-line {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    text-align: right;
+    color: #555555 !important;
+}
+
+/* Cuadrícula de datos del cliente */
+.formal-client-data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 30px;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    font-family: var(--font-ui);
+}
+
+.client-data-item {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 4px;
+}
+
+.c-data-label {
+    font-weight: 700;
+    width: 90px;
+    color: #555555 !important;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.c-data-value {
+    flex-grow: 1;
+    color: #000000 !important;
+}
+
+/* Tabla de Detalles */
+.formal-details-table {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-row {
+    display: flex;
+}
+
+.table-header-row {
+    background-color: rgba(39, 105, 109, 0.08);
+    border-bottom: 1px solid #DDDDDD;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 15px;
+}
+
+.table-body-row {
+    padding: 18px 15px;
+    flex-grow: 1;
+}
+
+.col-desc {
+    flex-grow: 1;
+    padding-right: 30px;
+}
+
+.col-total {
+    width: 200px;
+    text-align: right;
+    border-left: 1px solid #EEEEEE;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-desc-title {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.service-desc-detail {
+    font-size: 0.9rem;
+    color: #444444 !important;
+    margin-bottom: 12px;
+}
+
+.service-desc-comprende {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    background-color: #FAFAFA;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid #EEEEEE;
+    color: #555555 !important;
+}
+
+.service-desc-comprende * {
+    color: #555555 !important;
+}
+
+.price-monthly-detail {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary) !important;
+    line-height: 1;
+}
+
+.price-monthly-detail * {
+    color: var(--color-primary) !important;
+}
+
+.price-monthly-suffix {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666666 !important;
+}
+
+.price-usd-reference {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: #666666 !important;
+    margin-top: 4px;
+}
+
+.price-usd-reference * {
+    color: #666666 !important;
+}
+
+/* Firmas y contacto */
+.formal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 12px;
+    margin-top: auto;
+}
+
+.formal-footer-details {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: #666666 !important;
+}
+
+.footer-firm-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #111111 !important;
+    font-size: 0.85rem;
+}
+
+.footer-firm-sub {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+}
+
+.print-logo-black {
+    height: 30px;
+    width: auto;
+}
+
+.print-logo-fallback-black {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.05em;
+}
+
+/* --- 3. CAMPOS EDITABLES --- */
+[contenteditable="true"] {
+    outline: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 3px;
+}
+
+[contenteditable="true"]:hover {
+    background-color: rgba(39, 105, 109, 0.05);
+    box-shadow: 0 0 0 2px rgba(39, 105, 109, 0.1);
+    cursor: text;
+}
+
+[contenteditable="true"]:focus {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 2px var(--color-accent);
+    outline: none;
+}
+
+.page-portada [contenteditable="true"]:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.page-portada [contenteditable="true"]:focus {
+    background-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-accent);
+    color: #FFFFFF !important;
+}
+
+/* --- 4. CLASES DE ESTRUCTURA --- */
+.grid-3-cols {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 0.6fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .grid-3-cols {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-3-cols {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+/* --- 5. @MEDIA PRINT (IMPRESIÓN EN PDF) --- */
+@media print {
+    /* Forzar orientación horizontal */
+    @page {
+        size: landscape;
+        margin: 0;
+    }
+
+    body {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Ocultar elementos de la web */
+    header, 
+    footer.main-footer, 
+    #login-container, 
+    #app-container, 
+    .preview-actions-bar {
+        display: none !important;
+    }
+
+    /* Ajustar wrapper del preview */
+    .preview-section-wrapper {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        border-top: none !important;
+        display: block !important;
+        background-color: #FFFFFF !important;
+    }
+
+    .document-pages-wrapper {
+        display: block !important;
+        background-color: #FFFFFF !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Configurar cada hoja A4 apaisada */
+    .presupuesto-page {
+        width: 297mm !important;
+        height: 210mm !important;
+        margin: 0 !important;
+        padding: 2.2cm !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        background-color: #FFFFFF !important;
+    }
+
+    /* Ajuste de portada en impresión */
+    .page-portada {
+        background-color: #27696D !important; /* Teal */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .page-portada * {
+        color: #FFFFFF !important;
+    }
+
+    .portada-left-decor {
+        background-color: #F6C02F !important; /* Naranju */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .timeline-bar-fill {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .timeline-badge-stage {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .table-header-row {
+        background-color: rgba(39, 105, 109, 0.08) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Desactivar efectos hover/focus */
+    [contenteditable="true"] {
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        outline: none !important;
+    }
+}

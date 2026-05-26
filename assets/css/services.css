@@ -1,0 +1,84 @@
+.service-section {
+    padding: clamp(3rem, 10vw, 7.5rem) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.service-section:last-child {
+    border-bottom: none;
+}
+
+.sticky-title {
+    padding: 0 clamp(0.75rem, 3vw, 1.25rem);
+    line-height: 1;
+    position: sticky;
+    top: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+@media (max-width: 768px) {
+    .sticky-title {
+        position: static;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    .service-section {
+        padding: 2.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-section {
+        padding: 1.5rem 0;
+    }
+
+    .sticky-title {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* --- SERVICES PAGE INLINE STYLES REFACTORED --- */
+
+/* Hero Section */
+.services-hero {
+    padding: 7.5rem 1.5rem;
+}
+
+/* Accordion/Service Items */
+.faq-item .faq-question .heading-3 {
+    margin-top: 1.5rem;
+}
+
+.section-subtitle {
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+.section-title {
+    margin-bottom: 24px;
+}
+
+/* Logos Section */
+.services-logos-section {
+    margin-top: 120px;
+    padding-bottom: 80px;
+}
+
+.services-logos-section .caption {
+    margin-bottom: 60px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .services-hero {
+        padding: 5rem 1.5rem;
+    }
+
+    .faq-item .faq-question .heading-3 {
+        font-size: 22px;
+    }
+
+    .section-subtitle {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+}

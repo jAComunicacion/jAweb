@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de Honorarios jArismendi® — Módulo de valoración interna. Acceso restringido.">
+    <title>Calculadora de Honorarios — jArismendi® </title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/hero.css">
+    <link rel="stylesheet" href="./assets/css/presupuestos.css">
+    <link rel="stylesheet" href="./assets/css/presupuesto.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="container">
+        <nav class="flex nav-pricing">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="./assets/logos/jacomunicacion.jpg" alt="jAComunicacion"
+                     onerror="this.style.display='none'; this.parentElement.innerText = 'JACOMUNICACION';">
+            </a>
+
+            <!-- Subtitle for Internal App -->
+            <div class="header-app-title">
+                <span class="caption uppercase" style="margin: 0; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-accent);">Panel Interno</span>
+            </div>
+
+            <!-- Logout Button (Initially Hidden) -->
+            <button id="btn-logout" class="btn btn-outline uppercase hidden" style="padding: 8px 20px; font-size: 13px; border-radius: 4px;">
+                Cerrar Sesión
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- SECCIÓN DE LOGIN (Se muestra por defecto) -->
+        <section id="login-container" class="login-section">
+            <div class="login-card">
+                <span class="caption uppercase" style="margin-left: 0; margin-bottom: 10px color: var(--color-accent); font-size: 0.9rem;">Acceso Restringido</span>
+                <h1 class="heading-2 uppercase" style="margin-bottom: 2rem;">Ingreso</h1>
+                
+                <form id="login-form">
+                    <div class="form-group-pricing">
+                        <label for="username" class="form-label-pricing">Usuario</label>
+                        <input type="text" id="username" class="form-input-pricing" placeholder="Introduce tu usuario" required autocomplete="username">
+                    </div>
+                    
+                    <div class="form-group-pricing">
+                        <label for="password" class="form-label-pricing">Contraseña</label>
+                        <input type="password" id="password" class="form-input-pricing" placeholder="Introduce tu contraseña" required autocomplete="current-password">
+                    </div>
+                    
+                    <div id="login-error" class="login-error-msg hidden">
+                        Usuario o contraseña incorrectos.
+                    </div>
+                    
+                    <div style="margin-top: 2rem; text-align: right;">
+                        <button type="submit" class="btn btn-primary uppercase" style="width: 100%; border-radius: 4px; padding: 14px;">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE LA APP (Oculta por defecto) -->
+        <section id="app-container" class="app-section hidden">
+            
+            <div class="app-header-block">
+                <span class="caption uppercase" style="margin-left: 0;">Herramienta de Control</span>
+                <h1 class="heading-1 uppercase">Calculadora de Honorarios</h1>
+                <p class="heading-3" style="margin-top: 1rem; color: var(--text-secondary); text-transform: none;">
+                    jArismendi® — Estimación de inversión estratégica mensual.
+                </p>
+            </div>
+
+            <form id="pricing-form" onsubmit="event.preventDefault();">
+
+                <!-- SECCIÓN 1 — DATOS DEL CLIENTE -->
+                <div class="section-card">
+                    <h2 class="heading-3 section-card-title">Sección 1 — Datos del Cliente</h2>
+                    
+                    <div class="grid-2-cols">
+                        <div class="form-group-pricing">
+                            <label for="client-name" class="form-label-pricing">Nombre del Cliente</label>
+                            <input type="text" id="client-name" class="form-input-pricing" placeholder="Ej. Convince S.A." required>
+                        </div>
+                        
+                        <div class="form-group-pricing">
+                            <label class="form-label-pricing">Categoría</label>
+                            <div class="radio-pill-group">
+                                <label class="radio-pill-item">
+                                    <input type="radio" name="client-category" value="mini" checked>
+                                    <span>Mini-empresa</span>
+                                </label>
+                                <label class="radio-pill-item">
+                                    <input type="radio" name="client-category" value="pymeb">
+                                    <span>PYME B</span>
+                                </label>
+                                <label class="radio-pill-item">
+                                    <input type="radio" name="client-category" value="pymea">
+                                    <span>PYME A</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-3-cols" style="margin-top: 1.5rem;">
+                        <div class="form-group-pricing">
+                            <label class="form-label-pricing">Tipo de Contacto</label>
+                            <div class="radio-pill-group">
+                                <label class="radio-pill-item">
+                                    <input type="radio" name="contact-type" value="inbound" checked>
+                                    <span>Inbound (Estudio)</span>
+                                </label>
+                                <label class="radio-pill-item">
+                                    <input type="radio" name="contact-type" value="outbound">
+                                    <span>Outbound (Visita)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-pricing">
+                            <label for="company-moment" class="form-label-pricing">Momento de la Empresa</label>
+                            <select id="company-moment" class="form-select-pricing">
+                                <option value="stable">Estable</option>
+                                <option value="retraction">En retracción con potencial</option>
+                                <option value="growth">En crecimiento activo</option>
+                                <option value="crisis">En crisis estructural</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group-pricing">
+                            <label for="intervention-months" class="form-label-pricing">Meses de Intervención</label>
+                            <input type="number" id="intervention-months" class="form-input-pricing input-number-pricing" min="1" value="12">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2 — ETAPAS ACTIVAS -->
+                <div class="section-card">
+                    <h2 class="heading-3 section-card-title">Sección 2 — Etapas Activas</h2>
+                    <p class="paragraph-2" style="margin-bottom: 2rem;">Activá las etapas de la intervención para seleccionar los servicios correspondientes.</p>
+                    
+                    <div class="stages-grid">
+                        
+                        <!-- IDEAR -->
+                        <div class="stage-box" id="stage-box-idear">
+                            <label class="stage-header">
+                                <input type="checkbox" id="stage-idear" class="stage-toggle-checkbox">
+                                <span class="stage-title">Idear</span>
+                            </label>
+                            <div class="stage-services" id="services-idear">
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-idear-list" value="Diagnóstico de marca">
+                                    <span>Diagnóstico de marca</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-idear-list" value="Estrategia de comunicación">
+                                    <span>Estrategia de comunicación</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-idear-list" value="Auditoría de identidad">
+                                    <span>Auditoría de identidad</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-idear-list" value="Posicionamiento">
+                                    <span>Posicionamiento</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- DISEÑAR -->
+                        <div class="stage-box" id="stage-box-disenar">
+                            <label class="stage-header">
+                                <input type="checkbox" id="stage-disenar" class="stage-toggle-checkbox">
+                                <span class="stage-title">Diseñar</span>
+                            </label>
+                            <div class="stage-services" id="services-disenar">
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-disenar-list" value="Identidad visual">
+                                    <span>Identidad visual</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-disenar-list" value="Diseño editorial">
+                                    <span>Diseño editorial</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-disenar-list" value="Diseño digital">
+                                    <span>Diseño digital</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-disenar-list" value="Dirección de arte">
+                                    <span>Dirección de arte</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- DESARROLLAR -->
+                        <div class="stage-box" id="stage-box-desarrollar">
+                            <label class="stage-header">
+                                <input type="checkbox" id="stage-desarrollar" class="stage-toggle-checkbox">
+                                <span class="stage-title">Desarrollar</span>
+                            </label>
+                            <div class="stage-services" id="services-desarrollar">
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-desarrollar-list" value="Sitio web institucional">
+                                    <span>Sitio web institucional</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-desarrollar-list" value="Landing pages">
+                                    <span>Landing pages</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-desarrollar-list" value="Aplicaciones web">
+                                    <span>Aplicaciones web</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-desarrollar-list" value="E-commerce">
+                                    <span>E-commerce</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- MANTENER -->
+                        <div class="stage-box" id="stage-box-mantener">
+                            <label class="stage-header">
+                                <input type="checkbox" id="stage-mantener" class="stage-toggle-checkbox">
+                                <span class="stage-title">Mantener</span>
+                            </label>
+                            <div class="stage-services" id="services-mantener">
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-mantener-list" value="Gestión de contenidos">
+                                    <span>Gestión de contenidos</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-mantener-list" value="Análisis y reportes">
+                                    <span>Análisis y reportes</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-mantener-list" value="Mantenimiento de sitio">
+                                    <span>Mantenimiento de sitio</span>
+                                </label>
+                                <label class="service-checkbox-item">
+                                    <input type="checkbox" name="services-mantener-list" value="Soporte de comunicación">
+                                    <span>Soporte de comunicación</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 3 — HORAS Y DESPLAZAMIENTO -->
+                <div class="section-card">
+                    <h2 class="heading-3 section-card-title">Sección 3 — Horas y Desplazamiento</h2>
+                    
+                    <div class="hours-grid">
+                        <div class="form-group-pricing">
+                            <label for="hours-insitu" class="form-label-pricing">Horas In Situ por semana</label>
+                            <div class="input-calc-wrapper">
+                                <input type="number" id="hours-insitu" class="form-input-pricing input-number-pricing" min="0" value="0" step="0.5">
+                                <span class="calculated-hint" id="hint-insitu">×4 = 0 hs/mes</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-pricing">
+                            <label for="hours-remote" class="form-label-pricing">Horas Remotas por semana</label>
+                            <div class="input-calc-wrapper">
+                                <input type="number" id="hours-remote" class="form-input-pricing input-number-pricing" min="0" value="0" step="0.5">
+                                <span class="calculated-hint" id="hint-remote">×4 = 0 hs/mes</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group-pricing">
+                            <label for="hours-planning" class="form-label-pricing">Horas Planificación por semana</label>
+                            <div class="input-calc-wrapper">
+                                <input type="number" id="hours-planning" class="form-input-pricing input-number-pricing" min="0" value="0" step="0.5">
+                                <span class="calculated-hint" id="hint-planning">×4 = 0 hs/mes</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group-pricing">
+                            <label for="km-week" class="form-label-pricing">Kilómetros por semana</label>
+                            <div class="input-calc-wrapper">
+                                <input type="number" id="km-week" class="form-input-pricing input-number-pricing" min="0" value="0">
+                                <span class="calculated-hint" id="hint-km">×4 = 0 km/mes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="total-hours-badge">
+                        <div class="total-badge-label">TOTAL HORAS ESTIMADAS:</div>
+                        <div class="total-badge-value" id="total-hours-month">0 hs/mes</div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 4 — ANCLAJE DEL CLIENTE -->
+                <div class="section-card">
+                    <h2 class="heading-3 section-card-title">Sección 4 — Anclaje del Cliente</h2>
+                    <p class="paragraph-2" style="margin-bottom: 1.5rem;">Elegí el método de anclaje para vincular el presupuesto a la realidad económica del cliente.</p>
+                    
+                    <div class="anchor-tabs">
+                        <label class="anchor-tab-btn">
+                            <input type="radio" name="anchor-option" value="option-a" checked>
+                            <div class="tab-btn-content">
+                                <div class="tab-title">Opción A</div>
+                                <div class="tab-subtitle">Fabricante / Producto físico</div>
+                            </div>
+                        </label>
+                        <label class="anchor-tab-btn">
+                            <input type="radio" name="anchor-option" value="option-b">
+                            <div class="tab-btn-content">
+                                <div class="tab-title">Opción B</div>
+                                <div class="tab-subtitle">Empresa de servicios</div>
+                            </div>
+                        </label>
+                        <label class="anchor-tab-btn">
+                            <input type="radio" name="anchor-option" value="option-c">
+                            <div class="tab-btn-content">
+                                <div class="tab-title">Opción C</div>
+                                <div class="tab-subtitle">Empresa mixta</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- CAMPOS DINÁMICOS DE ANCLAJE -->
+                    <div class="anchor-fields-container">
+                        
+                        <!-- Opción A -->
+                        <div id="fields-option-a" class="anchor-field-block">
+                            <div class="form-group-pricing" style="max-width: 600px;">
+                                <label for="product-price" class="form-label-pricing">Precio del Producto Estrella (USD)</label>
+                                <input type="number" id="product-price" class="form-input-pricing input-number-pricing" min="0" value="0">
+                            </div>
+                            <div class="anchor-calc-result">
+                                Fórmula: Precio ÷ Meses de intervención (se toma de la Sección 1) = <span id="calc-result-a" class="anchor-result-highlight">USD 0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Opción B -->
+                        <div id="fields-option-b" class="anchor-field-block hidden">
+                            <div class="grid-2-cols">
+                                <div class="form-group-pricing">
+                                    <label for="client-hourly-rate" class="form-label-pricing">Su Precio por Hora de Servicio (USD)</label>
+                                    <input type="number" id="client-hourly-rate" class="form-input-pricing input-number-pricing" min="0" value="0">
+                                </div>
+                                <div class="form-group-pricing">
+                                    <label for="competitor-hourly-rate" class="form-label-pricing">Precio Hora Competencia Estándar (USD)</label>
+                                    <input type="number" id="competitor-hourly-rate" class="form-input-pricing input-number-pricing" min="0" value="0">
+                                </div>
+                            </div>
+                            <div class="anchor-calc-result">
+                                Fórmula: Delta por Hora = <span id="calc-result-b" class="anchor-result-highlight">USD 0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Opción C -->
+                        <div id="fields-option-c" class="anchor-field-block hidden">
+                            <div class="form-group-pricing" style="max-width: 600px;">
+                                <label for="salary-reference" class="form-label-pricing">Sueldo Mensual Mejor Vendedor o Administrativo Senior (USD)</label>
+                                <input type="number" id="salary-reference" class="form-input-pricing input-number-pricing" min="0" value="0">
+                            </div>
+                            <div class="anchor-calc-result">
+                                Valor de anclaje directo: <span id="calc-result-c" class="anchor-result-highlight">USD 0.00</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ALERTA DE MOMENTO DE CRISIS -->
+                <div id="crisis-alert" class="crisis-alert-banner hidden">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="alert-icon">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <div>
+                        <strong>ALERTA DE VIABILIDAD:</strong> La empresa se encuentra en crisis estructural. Evaluar detalladamente la viabilidad comercial y el nivel de compromiso antes de presupuestar.
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DE RESULTADOS -->
+                <div class="results-container">
+                    <div class="results-inner">
+                        <span class="caption uppercase" style="margin-left: 0; color: var(--color-accent);">Resultados sugeridos</span>
+                        <h2 class="heading-2 uppercase" style="margin-bottom: 2rem; border-bottom: 1.5px solid var(--color-border); padding-bottom: 1.5rem;">Presupuesto Final</h2>
+                        
+                        <div class="results-grid">
+                            <div class="result-row">
+                                <span class="result-label">Total Horas / Mes:</span>
+                                <span class="result-val" id="res-total-hours">0 hs</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Valor Hora Ajustado:</span>
+                                <span class="result-val" id="res-hourly-value">USD 43.75</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Sub-total Operativo (Horas + Desplazamiento):</span>
+                                <span class="result-val" id="res-subtotal-op">USD 0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Valor de Anclaje Económico:</span>
+                                <span class="result-val" id="res-anchor-val">USD 0.00</span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label">Ajuste Contextual Aplicado:</span>
+                                <span class="result-val" id="res-context-adj">Ninguno (Estable)</span>
+                            </div>
+                        </div>
+
+                        <div class="main-prices-block">
+                            <!-- PRECIO SUGERIDO BASE USD -->
+                            <div class="price-box-usd">
+                                <div class="price-box-label">PRECIO SUGERIDO BASE (USD)</div>
+                                <div class="price-box-val" id="res-price-usd">USD 0.00</div>
+                            </div>
+                            
+                            <!-- TC MEP -->
+                            <div class="mep-box-exchange">
+                                <div class="mep-inner-content">
+                                    <div class="price-box-label">TIPO DE CAMBIO MEP DEL DÍA</div>
+                                    <div class="mep-rate-control">
+                                        <span class="mep-currency-prefix">$</span>
+                                        <input type="number" id="mep-exchange-rate" class="mep-rate-input" min="0" step="0.01" value="0">
+                                        <span class="mep-status-badge" id="mep-status">Cargando...</span>
+                                    </div>
+                                    <div class="mep-api-error hidden" id="mep-api-error-msg">
+                                        Fallo al cargar la API. Ingrese el tipo de cambio manualmente.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PRECIO EN PESOS ARS -->
+                            <div class="price-box-ars">
+                                <div class="price-box-label">PRECIO SUGERIDO EN PESOS (ARS)</div>
+                                <div class="price-box-val" id="res-price-ars">$ 0.00</div>
+                            </div>
+                        </div>
+
+                        <!-- RESUMEN AUTO-GENERADO -->
+                        <div class="summary-output-section">
+                            <h3 class="heading-3 uppercase" style="font-size: 1.1rem; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 1rem;">
+                                Resumen del Encargo (Copiable)
+                            </h3>
+                            <textarea id="summary-text" class="summary-textarea" readonly placeholder="El resumen se generará automáticamente a medida que completes los campos..."></textarea>
+                            
+                            <div style="margin-top: 1.25rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <button type="button" id="btn-copy-summary" class="btn btn-outline uppercase" style="border-radius: 4px; padding: 12px 30px; font-size: 14px; flex-grow: 1;">
+                                    Copiar Resumen
+                                </button>
+                                <button type="button" id="btn-generate-budget" class="btn btn-primary uppercase" style="border-radius: 4px; padding: 12px 30px; font-size: 14px; flex-grow: 1;">
+                                    Generar Presupuesto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- SECCIÓN DE VISTA PREVIA DEL PRESUPUESTO FORMAL (Oculta por defecto) -->
+        <section id="presupuesto-preview-container" class="preview-section-wrapper hidden">
+            
+            <!-- Barra de Acciones (Sticky) -->
+            <div class="preview-actions-bar">
+                <div class="actions-bar-inner">
+                    <span class="preview-bar-title uppercase">Vista Previa del Presupuesto</span>
+                    <div class="actions-buttons-group">
+                        <button type="button" id="btn-close-preview" class="btn btn-outline uppercase">Volver al Panel</button>
+                        <button type="button" id="btn-export-pdf" class="btn btn-primary uppercase">Exportar a PDF</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOCUMENTO FORMAL (A4 Apaisado para impresión) -->
+            <div class="document-pages-wrapper">
+                
+                <!-- PÁGINA 1 — PORTADA -->
+                <div class="presupuesto-page page-portada" id="page-1">
+                    <div class="portada-content">
+                        <div class="portada-left-decor"></div>
+                        <div class="portada-main-text">
+                            <span class="portada-tagline uppercase">Presupuesto de Intervención Estratégica</span>
+                            <h1 class="portada-client-title" id="preview-client-name-portada" contenteditable="true">Nombre del Cliente</h1>
+                            <div class="portada-date" id="preview-date-portada">Mayo 2026</div>
+                        </div>
+                        <div class="portada-footer-logo">
+                            <img src="./assets/logos/LogusjAComunicacion.png" alt="jA" class="print-logo-white" onerror="this.style.display='none';">
+                            <span class="print-logo-fallback">jA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 2 — DESCRIPCIÓN DE LA INTERVENCIÓN -->
+                <div class="presupuesto-page" id="page-2">
+                    <div class="page-inner-content">
+                        <div class="page-header-decor">
+                            <span class="page-caption-number">01</span>
+                            <span class="page-caption-title">Propuesta Metodológica</span>
+                        </div>
+                        <h2 class="page-title-heading">Descripción de la Intervención</h2>
+                        
+                        <div class="page-body-text-block" id="preview-narrative-text" contenteditable="true">
+                            <!-- El texto dinámico se inyectará aquí -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 3 — SERVICIOS INCLUIDOS -->
+                <div class="presupuesto-page" id="page-3">
+                    <div class="page-inner-content">
+                        <div class="page-header-decor">
+                            <span class="page-caption-number">02</span>
+                            <span class="page-caption-title">Alcance</span>
+                        </div>
+                        <h2 class="page-title-heading">Servicios Incluidos</h2>
+                        
+                        <div class="services-list-grid" id="preview-services-list">
+                            <!-- Los servicios se agruparán por etapa e inyectarán aquí -->
+                        </div>
+
+                        <!-- Bloque de Notas de Valor -->
+                        <div class="value-notes-box">
+                            <h4 class="value-notes-title">Notas de Valor</h4>
+                            <p class="value-notes-content">
+                                Nuestra propuesta de valor parte de un enfoque sistémico y estratégico, trabajando siempre de adentro hacia afuera: la comunicación externa de tu empresa es consecuencia directa de su identidad y su modelo de negocio. En jArismendi® aplicamos 30 años de experiencia acumulada para que tu proyecto no se adapte simplemente al mercado, sino que construya su propio lugar en él.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 4 — PLANIFICACIÓN -->
+                <div class="presupuesto-page" id="page-4">
+                    <div class="page-inner-content">
+                        <div class="page-header-decor">
+                            <span class="page-caption-number">03</span>
+                            <span class="page-caption-title">Cronograma</span>
+                        </div>
+                        <h2 class="page-title-heading">Planificación Temporal</h2>
+                        
+                        <!-- Timeline visual -->
+                        <div class="timeline-visual-container" id="preview-timeline-container">
+                            <!-- Se generará dinámicamente con JS -->
+                        </div>
+
+                        <div class="timeline-summary-footer">
+                            <div class="timeline-footer-label">Etapas Incluidas en el Proceso:</div>
+                            <div class="timeline-footer-stages" id="preview-timeline-active-stages">
+                                <!-- Etapas activas inyectadas aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÁGINA 5 — HOJA DE PRESUPUESTO FORMAL -->
+                <div class="presupuesto-page page-formal-sheet" id="page-5">
+                    <div class="page-inner-content formal-sheet-inner">
+                        
+                        <!-- Cabecera Formal -->
+                        <div class="formal-header">
+                            <div class="formal-header-left">
+                                <span class="formal-firm-title">jArismendi®</span>
+                                <span class="formal-firm-sub">Intervención Estratégica Integral</span>
+                            </div>
+                            <div class="formal-header-right">
+                                <div class="formal-doc-title">PRESUPUESTO</div>
+                                <div class="formal-budget-number" id="preview-budget-number">0026-0000000</div>
+                                <div class="formal-date-line">Fecha: <span id="preview-date-formal">26/05/2026</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Datos del Cliente -->
+                        <div class="formal-client-data-grid">
+                            <div class="client-data-item">
+                                <span class="c-data-label">Cliente:</span>
+                                <span class="c-data-value" id="formal-client-name">Nombre del Cliente</span>
+                            </div>
+                            <div class="client-data-item">
+                                <span class="c-data-label">Domicilio:</span>
+                                <span class="c-data-value editable-field" id="formal-client-address" contenteditable="true">Hacer clic para ingresar domicilio...</span>
+                            </div>
+                            <div class="client-data-item">
+                                <span class="c-data-label">Teléfono:</span>
+                                <span class="c-data-value editable-field" id="formal-client-phone" contenteditable="true">Hacer clic para ingresar teléfono...</span>
+                            </div>
+                            <div class="client-data-item">
+                                <span class="c-data-label">I.V.A.:</span>
+                                <span class="c-data-value editable-field" id="formal-client-iva" contenteditable="true">Responsable Inscripto</span>
+                            </div>
+                            <div class="client-data-item">
+                                <span class="c-data-label">C.U.I.T.:</span>
+                                <span class="c-data-value editable-field" id="formal-client-cuit" contenteditable="true">XX-XXXXXXXX-X</span>
+                            </div>
+                        </div>
+
+                        <!-- Detalles del Servicio -->
+                        <div class="formal-details-table">
+                            <div class="table-row table-header-row">
+                                <span class="col-desc">Descripción del Servicio</span>
+                                <span class="col-total">Total</span>
+                            </div>
+                            <div class="table-row table-body-row">
+                                <div class="col-desc">
+                                    <p class="service-desc-title"><strong>Consultoría en planificación estratégica y comunicación:</strong></p>
+                                    <p class="service-desc-detail">
+                                        Intervención de <span id="formal-months-count">12</span> meses, con frecuencia de <span id="formal-meeting-freq" contenteditable="true" class="editable-field">una reunión por semana</span>.
+                                    </p>
+                                    <div class="service-desc-comprende">
+                                        <strong>Comprende:</strong> <span id="formal-comprende-summary" contenteditable="true" class="editable-field">...</span>
+                                    </div>
+                                </div>
+                                <div class="col-total">
+                                    <div class="price-monthly-detail">
+                                        <span id="formal-total-ars">$ 0,00</span>
+                                        <span class="price-monthly-suffix">/ mes</span>
+                                    </div>
+                                    <div class="price-usd-reference">
+                                        Ref: <span id="formal-total-usd">USD 0,00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Firmas y Pie de Página -->
+                        <div class="formal-footer">
+                            <div class="formal-footer-details">
+                                <p class="footer-firm-name">julio Arismendi</p>
+                                <p class="footer-firm-sub">Comunicación & Marketing</p>
+                                <p class="footer-firm-contact">cel: +54 9 3442 319480 | juliocarismendiv@gmail.com</p>
+                            </div>
+                            <div class="formal-footer-logo-block">
+                                <img src="./assets/logos/LogusjAComunicacion.png" alt="jA" class="print-logo-black" onerror="this.style.display='none';">
+                                <span class="print-logo-fallback-black">jA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer" style="margin-top: 80px;">
+        <div class="container footer-inner" style="border-top: 1px solid var(--color-border); padding-top: 40px; padding-bottom: 40px; text-align: center;">
+            <p class="address-text" style="font-size: 0.85rem; opacity: 0.5;">
+                &copy; Copyright <strong>jAComunicacion®</strong> 2026 — Módulo de Uso Interno Privado.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="./assets/js/presupuestos.js"></script>
+    <script src="./assets/js/presupuesto.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+# ─── Carpetas de proceso / diseño (no funcionales a la web) ──
+1.estetica/
+2.autoevaluacion/
+3.especificacion/
+4.plan/
+
+# ─── Archivos pesados / media ────────────────────────────────
+assets/media/
+
+# ─── Documentación interna ───────────────────────────────────
+CLAUDE.md
+skill-pricing-v1.0.md
+
+# ─── Editor y sistema ────────────────────────────────────────
+.vscode/
+.DS_Store
+Thumbs.db
+*.py
+
+# ─── Entorno ─────────────────────────────────────────────────
+.env
+.env.local
