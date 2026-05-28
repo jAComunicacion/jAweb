@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Credenciales hardcodeadas (uso interno temporal)
     const AUTH_USER = "julio";
-    const AUTH_PASS = "antigravity";
+    const AUTH_PASS = "1975";   
 
     // Variables de Estado
     let tcMep = 0; // Tipo de cambio MEP
