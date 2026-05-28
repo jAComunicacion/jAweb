@@ -41,7 +41,7 @@
         <!-- SECCIÓN DE LOGIN (Se muestra por defecto) -->
         <section id="login-container" class="login-section">
             <div class="login-card">
-                <span class="caption uppercase" style="margin-left: 0; margin-bottom: 10px color: var(--color-accent); font-size: 0.9rem;">Acceso Restringido</span>
+                <span class="caption uppercase" style="margin-left: 0; margin-bottom: 10px; color: var(--color-accent); font-size: 0.9rem;">Acceso Restringido</span>
                 <h1 class="heading-2 uppercase" style="margin-bottom: 2rem;">Ingreso</h1>
                 
                 <form id="login-form">
@@ -70,9 +70,9 @@
         <section id="app-container" class="app-section hidden">
             
             <div class="app-header-block">
-                <span class="caption uppercase" style="margin-left: 0;">Herramienta de Control</span>
-                <h1 class="heading-1 uppercase">Calculadora de Honorarios</h1>
-                <p class="heading-3" style="margin-top: 1rem; color: var(--text-secondary); text-transform: none;">
+                <span class="caption uppercase">Herramienta de Control</span>
+                <h2 class="heading-2 uppercase">Calculadora de Honorarios</h2>
+                <p class="heading-4" style="margin-top: 1rem; color: var(--text-secondary); text-transform: none;">
                     jArismendi® — Estimación de inversión estratégica mensual.
                 </p>
             </div>
@@ -140,114 +140,363 @@
                     </div>
                 </div>
 
-                <!-- SECCIÓN 2 — ETAPAS ACTIVAS -->
+                <!-- SECCIÓN 2 — ÁREAS DE ACTUACIÓN -->
                 <div class="section-card">
-                    <h2 class="heading-3 section-card-title">Sección 2 — Etapas Activas</h2>
-                    <p class="paragraph-2" style="margin-bottom: 2rem;">Activá las etapas de la intervención para seleccionar los servicios correspondientes.</p>
-                    
-                    <div class="stages-grid">
-                        
-                        <!-- IDEAR -->
-                        <div class="stage-box" id="stage-box-idear">
+                    <h2 class="heading-3 section-card-title">Sección 2 — Áreas de Actuación</h2>
+                    <p class="paragraph-2" style="margin-bottom: 2rem;">Seleccioná las áreas de la intervención. Cada área despliega sus etapas y servicios específicos.</p>
+
+                    <div class="areas-grid">
+
+                        <!-- ÁREA A: DISEÑO EN COMUNICACIÓN VISUAL (DCV) -->
+                        <div class="area-box area-dcv" id="area-box-dcv">
                             <label class="stage-header">
-                                <input type="checkbox" id="stage-idear" class="stage-toggle-checkbox">
-                                <span class="stage-title">Idear</span>
+                                <input type="checkbox" id="area-dcv" class="stage-toggle-checkbox">
+                                <span class="area-title area-title-dcv">Diseño en Comunicación Visual</span>
                             </label>
-                            <div class="stage-services" id="services-idear">
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-idear-list" value="Diagnóstico de marca">
-                                    <span>Diagnóstico de marca</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-idear-list" value="Estrategia de comunicación">
-                                    <span>Estrategia de comunicación</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-idear-list" value="Auditoría de identidad">
-                                    <span>Auditoría de identidad</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-idear-list" value="Posicionamiento">
-                                    <span>Posicionamiento</span>
-                                </label>
+                            <div class="area-stages-container" id="stages-dcv">
+
+                                <!-- DCV — IDEAR -->
+                                <div class="area-stage-inner" id="stage-box-dcv-idear">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-dcv-idear" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Idear</span>
+                                    </label>
+                                    <div class="stage-services" id="services-dcv-idear">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-idear-list" value="Auditoría de identidad visual">
+                                            <span>Auditoría de identidad visual</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-idear-list" value="Diagnóstico de marca">
+                                            <span>Diagnóstico de marca</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-idear-list" value="Estrategia de comunicación">
+                                            <span>Estrategia de comunicación</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-idear-list" value="Posicionamiento visual">
+                                            <span>Posicionamiento visual</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- DCV — DISEÑAR -->
+                                <div class="area-stage-inner" id="stage-box-dcv-disenar">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-dcv-disenar" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Diseñar</span>
+                                    </label>
+                                    <div class="stage-services" id="services-dcv-disenar">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-disenar-list" value="Rebranding">
+                                            <span>Rebranding (incluye: Identidad visual, Diseño editorial, Dirección de arte)</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-disenar-list" value="Diseño Digital y Redes">
+                                            <span>Diseño Digital y Redes</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-disenar-list" value="Comunicación Audiovisual">
+                                            <span>Comunicación Audiovisual</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- DCV — DESARROLLAR -->
+                                <div class="area-stage-inner" id="stage-box-dcv-desarrollar">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-dcv-desarrollar" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Desarrollar</span>
+                                    </label>
+                                    <div class="stage-services" id="services-dcv-desarrollar">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-desarrollar-list" value="Web Institucional">
+                                            <span>Web Institucional</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-desarrollar-list" value="E-commerce">
+                                            <span>E-commerce</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-desarrollar-list" value="APPs">
+                                            <span>APPs</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-desarrollar-list" value="APIs">
+                                            <span>APIs</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-desarrollar-list" value="Dashboard CRM">
+                                            <span>Dashboard CRM</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- DCV — MANTENER -->
+                                <div class="area-stage-inner" id="stage-box-dcv-mantener">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-dcv-mantener" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Mantener</span>
+                                    </label>
+                                    <div class="stage-services" id="services-dcv-mantener">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-mantener-list" value="Gestión de Contenidos en Redes">
+                                            <span>Gestión de Contenidos en Redes</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-mantener-list" value="Diseño de Marca">
+                                            <span>Diseño de Marca</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-mantener-list" value="Análisis y reportes">
+                                            <span>Análisis y reportes</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-mantener-list" value="Mantenimiento de sitio">
+                                            <span>Mantenimiento de sitio</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-dcv-mantener-list" value="Soporte de comunicación">
+                                            <span>Soporte de comunicación</span>
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        <!-- DISEÑAR -->
-                        <div class="stage-box" id="stage-box-disenar">
+                        <!-- ÁREA B: MARKETING ESTRATÉGICO (ME) -->
+                        <div class="area-box area-me" id="area-box-me">
                             <label class="stage-header">
-                                <input type="checkbox" id="stage-disenar" class="stage-toggle-checkbox">
-                                <span class="stage-title">Diseñar</span>
+                                <input type="checkbox" id="area-me" class="stage-toggle-checkbox">
+                                <span class="area-title area-title-me">Marketing Estratégico</span>
                             </label>
-                            <div class="stage-services" id="services-disenar">
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-disenar-list" value="Identidad visual">
-                                    <span>Identidad visual</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-disenar-list" value="Diseño editorial">
-                                    <span>Diseño editorial</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-disenar-list" value="Diseño digital">
-                                    <span>Diseño digital</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-disenar-list" value="Dirección de arte">
-                                    <span>Dirección de arte</span>
-                                </label>
+                            <div class="area-stages-container" id="stages-me">
+
+                                <!-- ME — IDEAR -->
+                                <div class="area-stage-inner" id="stage-box-me-idear">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-me-idear" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Idear</span>
+                                    </label>
+                                    <div class="stage-services" id="services-me-idear">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-idear-list" value="Diagnóstico organizacional">
+                                            <span>Diagnóstico organizacional</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-idear-list" value="Auditoría del sistema interno">
+                                            <span>Auditoría del sistema interno</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-idear-list" value="Análisis de canales de venta">
+                                            <span>Análisis de canales de venta</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-idear-list" value="Estudio de mercado y competencia">
+                                            <span>Estudio de mercado y competencia</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-idear-list" value="Estudio de clientes actuales">
+                                            <span>Estudio de clientes actuales</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- ME — DISEÑAR -->
+                                <div class="area-stage-inner" id="stage-box-me-disenar">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-me-disenar" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Diseñar</span>
+                                    </label>
+                                    <div class="stage-services" id="services-me-disenar">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-disenar-list" value="Estructura estratégica">
+                                            <span>Estructura estratégica</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-disenar-list" value="Rediseño del modelo de negocio">
+                                            <span>Rediseño del modelo de negocio</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-disenar-list" value="Posicionamiento competitivo">
+                                            <span>Posicionamiento competitivo</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-disenar-list" value="Mapa de actores clave">
+                                            <span>Mapa de actores clave</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- ME — DESARROLLAR -->
+                                <div class="area-stage-inner" id="stage-box-me-desarrollar">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-me-desarrollar" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Desarrollar</span>
+                                    </label>
+                                    <div class="stage-services" id="services-me-desarrollar">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-desarrollar-list" value="Plan estratégico integral">
+                                            <span>Plan estratégico integral</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-desarrollar-list" value="Propuesta de reorganización interna">
+                                            <span>Propuesta de reorganización interna</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-desarrollar-list" value="Definición de indicadores de éxito">
+                                            <span>Definición de indicadores de éxito</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-desarrollar-list" value="Plan de capacitación interna">
+                                            <span>Plan de capacitación interna</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- ME — MANTENER -->
+                                <div class="area-stage-inner" id="stage-box-me-mantener">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-me-mantener" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Mantener</span>
+                                    </label>
+                                    <div class="stage-services" id="services-me-mantener">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-mantener-list" value="Seguimiento del plan estratégico">
+                                            <span>Seguimiento del plan estratégico</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-mantener-list" value="Revisión de procesos">
+                                            <span>Revisión de procesos</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-mantener-list" value="Reportes de gestión">
+                                            <span>Reportes de gestión</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-me-mantener-list" value="Consultoría periódica">
+                                            <span>Consultoría periódica</span>
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        <!-- DESARROLLAR -->
-                        <div class="stage-box" id="stage-box-desarrollar">
+                        <!-- ÁREA C: MARKETING GROWTH -->
+                        <div class="area-box area-growth" id="area-box-growth">
                             <label class="stage-header">
-                                <input type="checkbox" id="stage-desarrollar" class="stage-toggle-checkbox">
-                                <span class="stage-title">Desarrollar</span>
+                                <input type="checkbox" id="area-growth" class="stage-toggle-checkbox">
+                                <span class="area-title area-title-growth">Marketing Growth</span>
                             </label>
-                            <div class="stage-services" id="services-desarrollar">
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-desarrollar-list" value="Sitio web institucional">
-                                    <span>Sitio web institucional</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-desarrollar-list" value="Landing pages">
-                                    <span>Landing pages</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-desarrollar-list" value="Aplicaciones web">
-                                    <span>Aplicaciones web</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-desarrollar-list" value="E-commerce">
-                                    <span>E-commerce</span>
-                                </label>
-                            </div>
-                        </div>
+                            <div class="area-stages-container" id="stages-growth">
 
-                        <!-- MANTENER -->
-                        <div class="stage-box" id="stage-box-mantener">
-                            <label class="stage-header">
-                                <input type="checkbox" id="stage-mantener" class="stage-toggle-checkbox">
-                                <span class="stage-title">Mantener</span>
-                            </label>
-                            <div class="stage-services" id="services-mantener">
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-mantener-list" value="Gestión de contenidos">
-                                    <span>Gestión de contenidos</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-mantener-list" value="Análisis y reportes">
-                                    <span>Análisis y reportes</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-mantener-list" value="Mantenimiento de sitio">
-                                    <span>Mantenimiento de sitio</span>
-                                </label>
-                                <label class="service-checkbox-item">
-                                    <input type="checkbox" name="services-mantener-list" value="Soporte de comunicación">
-                                    <span>Soporte de comunicación</span>
-                                </label>
+                                <!-- GROWTH — IDEAR -->
+                                <div class="area-stage-inner" id="stage-box-growth-idear">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-growth-idear" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Idear</span>
+                                    </label>
+                                    <div class="stage-services" id="services-growth-idear">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-idear-list" value="Estudio de no-clientes">
+                                            <span>Estudio de no-clientes</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-idear-list" value="Identificación de escenarios de crecimiento">
+                                            <span>Identificación de escenarios de crecimiento</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-idear-list" value="Análisis de oportunidades de mercado">
+                                            <span>Análisis de oportunidades de mercado</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-idear-list" value="Diagnóstico de gestión comercial">
+                                            <span>Diagnóstico de gestión comercial</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- GROWTH — DISEÑAR -->
+                                <div class="area-stage-inner" id="stage-box-growth-disenar">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-growth-disenar" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Diseñar</span>
+                                    </label>
+                                    <div class="stage-services" id="services-growth-disenar">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-disenar-list" value="Diseño del plan de crecimiento (roadmap)">
+                                            <span>Diseño del plan de crecimiento (roadmap)</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-disenar-list" value="Diseño del modelo de distribución / comercialización">
+                                            <span>Diseño del modelo de distribución / comercialización</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-disenar-list" value="Diseño de la propuesta de valor por segmento">
+                                            <span>Diseño de la propuesta de valor por segmento</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-disenar-list" value="Diseño de la estrategia de expansión geográfica">
+                                            <span>Diseño de la estrategia de expansión geográfica</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- GROWTH — DESARROLLAR -->
+                                <div class="area-stage-inner" id="stage-box-growth-desarrollar">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-growth-desarrollar" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Desarrollar</span>
+                                    </label>
+                                    <div class="stage-services" id="services-growth-desarrollar">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-desarrollar-list" value="Implementación CRM">
+                                            <span>Implementación CRM</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-desarrollar-list" value="Desarrollo de canales de venta">
+                                            <span>Desarrollo de canales de venta</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-desarrollar-list" value="Estructura de representación comercial">
+                                            <span>Estructura de representación comercial</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-desarrollar-list" value="Plan de expansión Argentina / Brasil">
+                                            <span>Plan de expansión Argentina / Brasil</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- GROWTH — MANTENER -->
+                                <div class="area-stage-inner" id="stage-box-growth-mantener">
+                                    <label class="stage-header">
+                                        <input type="checkbox" id="stage-growth-mantener" class="stage-toggle-checkbox">
+                                        <span class="stage-title">Mantener</span>
+                                    </label>
+                                    <div class="stage-services" id="services-growth-mantener">
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-mantener-list" value="Conducción de la implementación">
+                                            <span>Conducción de la implementación</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-mantener-list" value="Trabajo de campo e intervención en áreas">
+                                            <span>Trabajo de campo e intervención en áreas</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-mantener-list" value="Detección y gestión de ajustes">
+                                            <span>Detección y gestión de ajustes</span>
+                                        </label>
+                                        <label class="service-checkbox-item">
+                                            <input type="checkbox" name="services-growth-mantener-list" value="Medición de resultados y revisión continua del modelo">
+                                            <span>Medición de resultados y revisión continua del modelo</span>
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 

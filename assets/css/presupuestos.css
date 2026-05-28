@@ -686,3 +686,115 @@
 .summary-textarea:focus {
     border-color: var(--color-primary);
 }
+
+/* ============================================================
+   SECCIÓN 2 — ÁREAS DE ACTUACIÓN (nueva estructura)
+   ============================================================ */
+
+.areas-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* --- Caja de Área (nivel 1) --- */
+.area-box {
+    background-color: var(--color-dark);
+    border: 1.5px solid var(--color-border);
+    border-left-width: 3px;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Color del borde izquierdo por área */
+.area-dcv    { border-left-color: var(--color-primary); }
+.area-me     { border-left-color: var(--color-accent);  }
+.area-growth { border-left-color: #7c6ae8;              }
+
+/* Sombra al activarse */
+.area-dcv.active    { box-shadow: 0 0 18px rgba(39,  105, 109, 0.12); }
+.area-me.active     { box-shadow: 0 0 18px rgba(246, 192,  47, 0.08); }
+.area-growth.active { box-shadow: 0 0 18px rgba(124, 106, 232, 0.10); }
+
+/* --- Título de Área --- */
+.area-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+.area-title-dcv    { color: var(--color-primary); }
+.area-title-me     { color: var(--color-accent);  }
+.area-title-growth { color: #9d8df5;              }
+
+.area-dcv.active    .area-title-dcv    { color: #5cd1d6; }
+.area-me.active     .area-title-me     { color: var(--color-accent); }
+.area-growth.active .area-title-growth { color: #b8adf9; }
+
+/* --- Contenedor de etapas del área (desplegable, nivel 1) --- */
+.area-stages-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity    0.35s ease,
+        margin-top 0.35s ease;
+    margin-top: 0;
+    border-top: 1px dashed transparent;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.area-stages-container.expanded {
+    max-height: 3000px;   /* suficientemente grande para todas las etapas */
+    opacity: 1;
+    margin-top: 1.5rem;
+    border-top: 1px dashed var(--color-border);
+    padding-top: 1rem;
+}
+
+/* --- Sub-bloque de etapa dentro del área --- */
+.area-stage-inner {
+    padding: 1rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
+}
+
+.area-stage-inner:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.area-stage-inner.active .stage-title {
+    color: var(--color-accent);
+}
+
+/* Ampliar max-height para servicios dentro de áreas (pueden tener hasta 5 items) */
+.area-stages-container .stage-services.expanded {
+    max-height: 400px;
+}
+
+/* Estilos del Página 3 — Agrupación por área */
+.service-area-group {
+    grid-column: 1 / -1;
+    margin-bottom: 1.5rem;
+}
+
+.service-area-title {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+

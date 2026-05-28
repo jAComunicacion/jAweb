@@ -47,26 +47,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const hintKm = document.getElementById('hint-km');
     const totalHoursMonthBadge = document.getElementById('total-hours-month');
 
-    // Elementos de Etapas y Servicios
+    // Constantes de estructura
+    const AREAS  = ['dcv', 'me', 'growth'];
+    const STAGES = ['idear', 'disenar', 'desarrollar', 'mantener'];
+
+    // Checkboxes de Área (nivel 1)
+    const areaCheckboxes = {
+        dcv:    document.getElementById('area-dcv'),
+        me:     document.getElementById('area-me'),
+        growth: document.getElementById('area-growth')
+    };
+
+    // Contenedores de etapas del área (desplegables, nivel 1)
+    const areaContainers = {
+        dcv:    document.getElementById('stages-dcv'),
+        me:     document.getElementById('stages-me'),
+        growth: document.getElementById('stages-growth')
+    };
+
+    // Cajas de área (para clase .active)
+    const areaBoxes = {
+        dcv:    document.getElementById('area-box-dcv'),
+        me:     document.getElementById('area-box-me'),
+        growth: document.getElementById('area-box-growth')
+    };
+
+    // Checkboxes de etapa por área (nivel 2)
     const stageCheckboxes = {
-        idear: document.getElementById('stage-idear'),
-        disenar: document.getElementById('stage-disenar'),
-        desarrollar: document.getElementById('stage-desarrollar'),
-        mantener: document.getElementById('stage-mantener')
+        dcv:    { idear: document.getElementById('stage-dcv-idear'),    disenar: document.getElementById('stage-dcv-disenar'),    desarrollar: document.getElementById('stage-dcv-desarrollar'),    mantener: document.getElementById('stage-dcv-mantener')    },
+        me:     { idear: document.getElementById('stage-me-idear'),     disenar: document.getElementById('stage-me-disenar'),     desarrollar: document.getElementById('stage-me-desarrollar'),     mantener: document.getElementById('stage-me-mantener')     },
+        growth: { idear: document.getElementById('stage-growth-idear'), disenar: document.getElementById('stage-growth-disenar'), desarrollar: document.getElementById('stage-growth-desarrollar'), mantener: document.getElementById('stage-growth-mantener') }
     };
 
+    // Contenedores de servicios por área/etapa (desplegables, nivel 2)
     const stageContainers = {
-        idear: document.getElementById('services-idear'),
-        disenar: document.getElementById('services-disenar'),
-        desarrollar: document.getElementById('services-desarrollar'),
-        mantener: document.getElementById('services-mantener')
+        dcv:    { idear: document.getElementById('services-dcv-idear'),    disenar: document.getElementById('services-dcv-disenar'),    desarrollar: document.getElementById('services-dcv-desarrollar'),    mantener: document.getElementById('services-dcv-mantener')    },
+        me:     { idear: document.getElementById('services-me-idear'),     disenar: document.getElementById('services-me-disenar'),     desarrollar: document.getElementById('services-me-desarrollar'),     mantener: document.getElementById('services-me-mantener')     },
+        growth: { idear: document.getElementById('services-growth-idear'), disenar: document.getElementById('services-growth-disenar'), desarrollar: document.getElementById('services-growth-desarrollar'), mantener: document.getElementById('services-growth-mantener') }
     };
 
+    // Cajas de etapa por área/etapa (para clase .active)
     const stageBoxes = {
-        idear: document.getElementById('stage-box-idear'),
-        disenar: document.getElementById('stage-box-disenar'),
-        desarrollar: document.getElementById('stage-box-desarrollar'),
-        mantener: document.getElementById('stage-box-mantener')
+        dcv:    { idear: document.getElementById('stage-box-dcv-idear'),    disenar: document.getElementById('stage-box-dcv-disenar'),    desarrollar: document.getElementById('stage-box-dcv-desarrollar'),    mantener: document.getElementById('stage-box-dcv-mantener')    },
+        me:     { idear: document.getElementById('stage-box-me-idear'),     disenar: document.getElementById('stage-box-me-disenar'),     desarrollar: document.getElementById('stage-box-me-desarrollar'),     mantener: document.getElementById('stage-box-me-mantener')     },
+        growth: { idear: document.getElementById('stage-box-growth-idear'), disenar: document.getElementById('stage-box-growth-disenar'), desarrollar: document.getElementById('stage-box-growth-desarrollar'), mantener: document.getElementById('stage-box-growth-mantener') }
     };
 
     // Elementos de Anclaje
@@ -159,9 +183,14 @@ document.addEventListener('DOMContentLoaded', () => {
         passwordInput.value = '';
         
         // Volver a colapsar secciones
-        Object.keys(stageContainers).forEach(key => {
-            stageContainers[key].classList.remove('expanded');
-            stageBoxes[key].classList.remove('active');
+        // Colapsar áreas y etapas
+        AREAS.forEach(area => {
+            areaContainers[area].classList.remove('expanded');
+            areaBoxes[area].classList.remove('active');
+            STAGES.forEach(stage => {
+                stageContainers[area][stage].classList.remove('expanded');
+                stageBoxes[area][stage].classList.remove('active');
+            });
         });
     }
 
@@ -244,31 +273,48 @@ document.addEventListener('DOMContentLoaded', () => {
         const contactRadios = document.getElementsByName('contact-type');
         contactRadios.forEach(radio => radio.addEventListener('change', calculatePricing));
 
-        // Etapas y sus Checkboxes
-        Object.keys(stageCheckboxes).forEach(key => {
-            stageCheckboxes[key].addEventListener('change', (e) => {
+        // Áreas (nivel 1) y sus etapas (nivel 2)
+        AREAS.forEach(area => {
+
+            // Listener del checkbox de área
+            areaCheckboxes[area].addEventListener('change', (e) => {
                 const isChecked = e.target.checked;
-                
-                // Animación de despliegue
                 if (isChecked) {
-                    stageContainers[key].classList.add('expanded');
-                    stageBoxes[key].classList.add('active');
+                    areaContainers[area].classList.add('expanded');
+                    areaBoxes[area].classList.add('active');
                 } else {
-                    stageContainers[key].classList.remove('expanded');
-                    stageBoxes[key].classList.remove('active');
-                    
-                    // UX: Si desactiva la etapa, desmarcar todos sus servicios internos
-                    const servicesCheckboxes = stageContainers[key].querySelectorAll('input[type="checkbox"]');
-                    servicesCheckboxes.forEach(cb => {
-                        cb.checked = false;
+                    areaContainers[area].classList.remove('expanded');
+                    areaBoxes[area].classList.remove('active');
+                    // Desactivar toda la estructura interna
+                    STAGES.forEach(stage => {
+                        stageCheckboxes[area][stage].checked = false;
+                        stageContainers[area][stage].classList.remove('expanded');
+                        stageBoxes[area][stage].classList.remove('active');
+                        stageContainers[area][stage].querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
                     });
                 }
                 calculatePricing();
             });
 
-            // Listeners para los servicios dentro de cada etapa
-            const services = stageContainers[key].querySelectorAll('input[type="checkbox"]');
-            services.forEach(cb => cb.addEventListener('change', calculatePricing));
+            // Listeners de cada etapa dentro del área
+            STAGES.forEach(stage => {
+                stageCheckboxes[area][stage].addEventListener('change', (e) => {
+                    const isChecked = e.target.checked;
+                    if (isChecked) {
+                        stageContainers[area][stage].classList.add('expanded');
+                        stageBoxes[area][stage].classList.add('active');
+                    } else {
+                        stageContainers[area][stage].classList.remove('expanded');
+                        stageBoxes[area][stage].classList.remove('active');
+                        stageContainers[area][stage].querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
+                    }
+                    calculatePricing();
+                });
+
+                // Listeners de servicios dentro de cada etapa
+                const services = stageContainers[area][stage].querySelectorAll('input[type="checkbox"]');
+                services.forEach(cb => cb.addEventListener('change', calculatePricing));
+            });
         });
 
         // Sección 3: Horas y Kilómetros (validar números y calcular ×4 al escribir)
@@ -478,31 +524,45 @@ document.addEventListener('DOMContentLoaded', () => {
             'crisis': 'En crisis estructural (Evaluar viabilidad)'
         }[momentVal];
 
-        // Recolectar etapas y servicios activos
+        // Recolectar áreas, etapas y servicios activos
+        const AREA_NAMES = {
+            dcv:    'DISEÑO EN COMUNICACIÓN VISUAL',
+            me:     'MARKETING ESTRATÉGICO',
+            growth: 'MARKETING GROWTH'
+        };
+
         let etapasActivasTexto = "";
         let tieneEtapas = false;
 
-        Object.keys(stageCheckboxes).forEach(key => {
-            if (stageCheckboxes[key].checked) {
-                tieneEtapas = true;
-                const stageName = key.toUpperCase();
+        AREAS.forEach(area => {
+            if (!areaCheckboxes[area].checked) return;
+
+            let areaTexto  = `--- ${AREA_NAMES[area]} ---\n`;
+            let areaConEtapas = false;
+
+            STAGES.forEach(stage => {
+                if (!stageCheckboxes[area][stage].checked) return;
+                tieneEtapas   = true;
+                areaConEtapas = true;
+
                 const activeServices = [];
-                
-                const serviceCheckboxes = stageContainers[key].querySelectorAll('input[type="checkbox"]:checked');
-                serviceCheckboxes.forEach(cb => {
+                stageContainers[area][stage].querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
                     activeServices.push(cb.value);
                 });
 
+                const stageName = stage.toUpperCase();
                 if (activeServices.length > 0) {
-                    etapasActivasTexto += `- ${stageName}: ${activeServices.join(" / ")}\n`;
+                    areaTexto += `  ${stageName}: ${activeServices.join(" / ")}\n`;
                 } else {
-                    etapasActivasTexto += `- ${stageName}: Etapa activa (Sin servicios específicos detallados)\n`;
+                    areaTexto += `  ${stageName}: Etapa activa (Sin servicios específicos detallados)\n`;
                 }
-            }
+            });
+
+            if (areaConEtapas) etapasActivasTexto += areaTexto;
         });
 
         if (!tieneEtapas) {
-            etapasActivasTexto = "[Ninguna etapa de intervención activa seleccionada]\n";
+            etapasActivasTexto = "[Ninguna área de intervención activa seleccionada]\n";
         }
 
         // Horas detalladas
