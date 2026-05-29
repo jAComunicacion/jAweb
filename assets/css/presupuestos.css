@@ -317,11 +317,13 @@
 
 .input-number-pricing {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .input-number-pricing::-webkit-outer-spin-button,
 .input-number-pricing::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    appearance: none;
     margin: 0;
 }
 
